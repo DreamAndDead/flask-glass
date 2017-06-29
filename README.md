@@ -3,27 +3,27 @@ a well grounded code base for starting a new flask project.
 
 ## start
 
-安装python虚拟环境，virtualenv
+prepare virtualenv
 
     sudo pip install -U virtualenv
 
-克隆代码
+clone code
 
-    git clone git@10.1.1.217:eh-front-end/layout-editor-server.git
+    git clone https://github.com/DreamAndDead/flask-glass.git
 
-初始化python环境
+init virtualenv
 
-    cd layout-editor-server
+    cd flask-glass
 
     virtualenv -p python3 .venv
 
     source .venv/bin/activate
 
-安装依赖
+install deps
 
     pip install -r requirements.txt
 
-查看文档
+live doc
 
     make live
 
