@@ -1,6 +1,7 @@
-# 服务市场配置工具 server端
+# flask-glass
+a well grounded code base for starting a new flask project.
 
-## 项目环境配置
+## start
 
 安装python虚拟环境，virtualenv
 
@@ -26,4 +27,3 @@
 
     make live
 
-剩下的所有内容，都在文档之中
