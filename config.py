@@ -62,7 +62,7 @@ class ProductionConfig(BaseConfig):
     1. 连接服务器的数据库
     2. 去除了 开发，测试 环境下的辅助选项
     """
-    SQLALCHEMY_DATABASE_URI = "mysql://<address online"
+    SQLALCHEMY_DATABASE_URI = "mysql://<address online>"
 
 
 config = {

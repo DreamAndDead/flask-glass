@@ -1,6 +1,6 @@
+import io
 from flask import url_for, request
 from flask import json
-import io
 from app.model import Files
 
 
