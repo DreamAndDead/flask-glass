@@ -101,9 +101,8 @@ you modify the model files, remember run the commands again.
     ./manage.py db migrate
 
 refs:
-- flask-migrate, thanks [visit doc][flask migrate]
-- flask-SQLAlchemy, same api for many different databases. [visit doc][flask
-    SQLAlchemy]
+- [flask-migrate][flask migrate], thanks
+- [flask-SQLAlchemy][flask SQLAlchemy], same api for many different databases.
 
 ## start server
 
@@ -114,8 +113,8 @@ ensure you have made the migration and all db connections work
 browse `localhost:5000` to see
 
 refs:
-- flask-script make starting server and other things easily. [visit doc][flask script]
-- flask-cors, cross domain. [visit doc][flask cors]
+- [flask-script][flask script] make starting server and other things easily.
+- [flask-cors][flask cors], cross domain.
 
 ## test
 
@@ -126,9 +125,9 @@ run test
 all the test is in `./tests` folder.
 
 refs:
-- pytest as test runner. [visit doc][pytest]
-- pytest-flask provide fixtures. [visit doc][pytest flask]
-- pytest-xdist helps running tests in parallel. [visit doc][pytest xdist]
+- [pytest][pytest] as test runner.
+- [pytest-flask][pytest flask] provide fixtures.
+- [pytest-xdist][pytest xdist] helps running tests in parallel.
 
 ## docs
 
@@ -139,8 +138,8 @@ live doc
 it'll automatically open the doc link in browser.
 
 refs:
-- sphinx and its plugins. [visit doc][sphinx]
-- sphinx-autobuild make doc live. [visit doc][sphinx autobuild]
+- [sphinx][sphinx] and its plugins.
+- [sphinx-autobuild][sphinx autobuild] make doc live.
 
 ## shell
 
