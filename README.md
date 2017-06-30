@@ -2,6 +2,8 @@
 simple boilerplate for starting a new flask project. inspired by book [Flask Web
 Development][book]
 
+![cover][book cover]
+
 features:
 - db migration
 - manage.py script
@@ -162,3 +164,4 @@ trust me, it's the most helpful command to help you debug your app.
 [sphinx autobuild]: https://pypi.python.org/pypi/sphinx-autobuild
 
 [book]: http://shop.oreilly.com/product/0636920031116.do
+[book cover]: https://covers.oreillystatic.com/images/0636920031116/lrg.jpg
