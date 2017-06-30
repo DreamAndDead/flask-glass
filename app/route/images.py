@@ -1,13 +1,68 @@
 """
 与selector相对应，这里仅关于实际layout数据的加载与保存
 """
-from flask import json, request
-
+import os
+from flask import render_template
+from flask import redirect, request
+from flask import send_from_directory
+from config import BaseConfig
 from . import main
-from .base import jsonify_wrapper, clear_all, name2location
-from ..model import EhItem, EhLaunchPadLayouts
-from ..model import dump
+from .lib import jsonify_wrapper
+from ..model import Images
 from .. import db
+
+UPLOAD_FOLDER = BaseConfig.UPLOAD_FOLDER
+
+@main.route("/")
+def index():
+    # access full file list
+    return render_template('index.html', files = listFiles())
+
+
+def addFile(filename):
+    # check if duplicate file
+    files = listFiles()
+    for f in files:
+        if filename == f.filename:
+            return
+
+    db.session.add(Images(filename=filename))
+    db.session.commit()
+
+def delFile(id):
+    fileToDelete = Images.query.filter_by(id=id).one()
+    db.session.delete(fileToDelete)
+    db.session.commit()
+
+def listFiles():
+    return Images.query.all()
+
+
+@main.route("/api/delFile/<file_id>", methods=['GET'])
+def del_file(file_id):
+    delFile(file_id)
+    return redirect('/')
+
+
+@main.route("/api/uploadFile", methods=['POST'])
+def upload_file():
+    file = request.files['file']
+    filename = file.filename
+    file.save(os.path.join(UPLOAD_FOLDER, filename))
+    addFile(filename)
+    return redirect('/')
+
+
+@main.route("/file/<filename>", methods=['GET'])
+def serve_file(filename):
+    """
+    提供静态资源的访问
+    """
+    folder = UPLOAD_FOLDER
+    path = os.path.join(folder, filename)
+    if not os.path.exists(path):
+        filename = 'not-exist'
+    return send_from_directory(UPLOAD_FOLDER, filename, as_attachment=True)
 
 
 # 界面上的数据保存到数据库
@@ -74,49 +129,6 @@ def save():
     dump(ns=namespace_id)
 
     return {'status': 'success'}
-
-
-def insert_layout(namespace_id, scene_type, layout_name, scope_code, scope_id, layout):
-    """
-    辅助函数，用来插入layout
-    """
-    # FIXME 当遇到groups数据为[]时，我们认为这个Layout是未被添加的
-    # 同时也不添加任何item
-    if len(layout.get('groups')) == 0:
-        return
-    row = EhLaunchPadLayouts(
-        namespace_id=namespace_id,
-        scene_type=scene_type,
-        layout_name=layout_name,
-        layout=layout,
-        scope_code=scope_code,
-        scope_id=scope_id
-    )
-    db.session.add(row)
-
-
-def insert_items(namespace_id, scene_type, layout_name, scope_code, scope_id, groups):
-    """
-    辅助函数，用来插入items
-    """
-    for group in groups:
-        widget_type = group['widget']
-        item_group = group['instanceConfig']['itemGroup']
-        items = group['items']
-
-        for index, item in enumerate(items):
-            row = EhItem(
-                widget_type=widget_type,
-                namespace_id=namespace_id,
-                scene_type=scene_type,
-                layout_name=layout_name,
-                item_group=item_group,
-                scope_code=scope_code,
-                scope_id=scope_id,
-                more_order=index,
-                **item
-            ).getItem()
-            db.session.add(row)
 
 
 @main.route("/api/load", methods=['POST', 'GET'])
@@ -186,20 +198,3 @@ def load():
                 group['items'] = query_items(namespace_id, scene_type, item_location, group, scope_code, scope_id)
 
     return layout
-
-
-def query_items(namespace_id, scene_type, item_location, group, scope_code, scope_id):
-    widget_type = group['widget']
-    item_group = group['instanceConfig']['itemGroup']
-
-    items = EhItem.query(
-        widget_type=widget_type,
-        namespace_id=namespace_id,
-        scene_type=scene_type,
-        item_location=item_location,
-        item_group=item_group,
-        scope_code=scope_code,
-        scope_id=scope_id
-    )
-    return items
-

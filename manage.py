@@ -24,9 +24,9 @@ manage.py的其它功能
 
    positional arguments:
        runserver           启动flask服务器
-       shell               启动ipython辅助shell，帮助调试变量，数据库连接之类，非常有用的命令
-       test                单元测试，不完善，可暂时不需要
-       db                  针对ORM的修改，进行数据库表的迁移修改，因为数据库是固定的，所以这里暂时不需要
+       shell               启动ipython辅助shell，帮助调试变量，数据库连接之类
+       test                单元测试，不完善
+       db                  针对ORM的修改，进行数据库表的迁移修改
 
    optional arguments:
      -?, --help            show this help message and exit

@@ -1,0 +1,32 @@
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+<form enctype="multipart/form-data" method="post" action="/api/uploadFile">
+    <input name="file" type="file" />
+    <input type="submit" value="Upload" />
+</form>
+
+<table>
+  <thead>
+  <tr>
+    <th>id</th>
+    <th>filename</th>
+    <th>actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for file in files %}
+  <tr>
+    <td>{{loop.index}}</td>
+    <td>{{file.filename}}</td>
+    <td>
+      <a href="/file/{{ file.filename }}">download</a>
+      <a href="/api/delFile/{{ file.id }}">delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</body>
+

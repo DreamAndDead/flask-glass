@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# layout-editor-server documentation build configuration file, created by
+# flask-glass documentation build configuration file, created by
 # sphinx-quickstart on Fri Apr  7 12:59:21 2017.
 #
 # This file is execfile()d with the current directory set to its
@@ -55,7 +55,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'layout-editor-server'
+project = 'flask-glass'
 copyright = '2017, zdw'
 author = 'zdw'
 
@@ -113,7 +113,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'layout-editor-serverdoc'
+htmlhelp_basename = 'flask-glassdoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -140,7 +140,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'layout-editor-server.tex', 'layout-editor-server Documentation',
+    (master_doc, 'flask-glass.tex', 'flask-glass Documentation',
      'zdw', 'manual'),
 ]
 
@@ -150,7 +150,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'layout-editor-server', 'layout-editor-server Documentation',
+    (master_doc, 'flask-glass', 'flask-glass Documentation',
      [author], 1)
 ]
 
@@ -161,8 +161,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'layout-editor-server', 'layout-editor-server Documentation',
-     author, 'layout-editor-server', 'One line description of project.',
+    (master_doc, 'flask-glass', 'flask-glass Documentation',
+     author, 'flask-glass', 'One line description of project.',
      'Miscellaneous'),
 ]
 
