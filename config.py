@@ -52,7 +52,7 @@ class TestConfig(BaseConfig):
     DEBUG = True
     TESTING = True
     SQLALCHEMY_ECHO = True
-    SQLALCHEMY_DATABASE_URI = "mysql://root:root@localhost/test"
+    SQLALCHEMY_DATABASE_URI = "mysql://root:root@localhost/testdb"
 
 
 class ProductionConfig(BaseConfig):
