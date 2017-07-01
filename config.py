@@ -1,21 +1,18 @@
 """
-在开发应用时，我们需要 test, development, production 三种不同的环境，对应不同的全局变量配置，比如连接哪个数据库，是否启动flask
-的DEBUG选项，是否打印versose日志等
+different environment have its own configuration. here we get test, development and production
 
-默认情况下，runserver在dev环境下启动，如果要切换环境，需要显式声明环境变量 FLASK_ENV=production or FLASK_ENV=test
-
-此模块设置了所有环境下，Server的启动配置
+see `manage.py` how to change environment
 """
 import os
 
 
 class BaseConfig:
     """
-    所有配置所共享的相同配置
+    configuration that all environment shares
 
     1. SECRET_KEY
-    2. 服务器的ip与端口
-    3. 静态资源的上传目录地址
+    2. server ip and port
+    3. static resource dest dir
     """
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess'
     HOST = '0.0.0.0'
@@ -30,11 +27,11 @@ class BaseConfig:
 
 class DevelopmentConfig(BaseConfig):
     """
-    Development开发环境下的配置，主要设置了
+    for development
 
-    1. 连接本地的数据库
-    2. 启用flask DEBUG选项
-    3. 加印操作数据库的日志消息
+    1. db address
+    2. flask DEBUG
+    3. sqlalchemy log
     """
     DEBUG = True
     SQLALCHEMY_ECHO = True
@@ -43,11 +40,11 @@ class DevelopmentConfig(BaseConfig):
 
 class TestConfig(BaseConfig):
     """
-    Test测试环境下的配置，主要设置了
+    for test
 
-    1. 连接本地的测试数据库
-    2. 启用flask DEBUG和TESTING选项
-    3. 加印操作数据库的日志消息
+    1. db address
+    2. flask DEBUG and TEST
+    3. sqlalchemy log
     """
     DEBUG = True
     TESTING = True
@@ -57,10 +54,10 @@ class TestConfig(BaseConfig):
 
 class ProductionConfig(BaseConfig):
     """
-    Production生产环境下的配置，主要设置了
+    for production
 
-    1. 连接服务器的数据库
-    2. 去除了 开发，测试 环境下的辅助选项
+    1. only db address
+    2. close flask DEBUG and TEST
     """
     SQLALCHEMY_DATABASE_URI = "mysql://<address online>"
 

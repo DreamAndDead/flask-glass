@@ -1,5 +1,5 @@
 """
-此文件包含 api functions 需要引用的公共部分
+common functions that almost all route needs
 """
 
 from functools import wraps
@@ -10,7 +10,7 @@ from .. import db
 
 def jsonify_wrapper(func):
     """
-    装饰器，用于装饰每一个api，作用是将api返回的结果对象 序列为 json字符串，用于接口传输
+    a decorator, jsonify every api return dict value.
 
     example:
 
@@ -20,7 +20,7 @@ def jsonify_wrapper(func):
        @jsonify_wrapper
        def search():
            # search db, get python object data
-           # data = dict(name="zdw")
+           # data = dict(name="david")
            return data
 
     """

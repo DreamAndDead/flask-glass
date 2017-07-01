@@ -1,62 +1,42 @@
 .. toctree::
    :maxdepth: 3
 
-Server启动
+Manage script
 ==================
 
 .. automodule:: manage
    :members:
 
-Server启动的相关环境配置
+Configuration
 =========================
 
 .. automodule:: config
    :members:
 
-api数据结构overview
-====================
-.. include:: app/route/doc.rst
-
-Api
+Route
 ==================
 
-api公共lib
+lib
 ------------------
-.. automodule:: app.route.base
+.. automodule:: app.route.lib
    :members:
 
-selector api
+files
 ------------------
-.. automodule:: app.route.selector
+.. automodule:: app.route.files
    :members:
 
-layout api
+errors
 ------------------
-.. automodule:: app.route.layout
+.. automodule:: app.route.errors
    :members:
 
-静态资源
-------------------
-.. automodule:: app.route.static
-   :members:
 
 ORM
 ==================
 
-导出sql语句
+files
 ------------------
-.. automodule:: app.model.dump
-   :members:
-
-selector数据表
-------------------
-.. automodule:: app.model.selector
-   :members:
-
-   .. automethod:: __init__
-
-layout数据表
-------------------
-.. automodule:: app.model.layout
+.. automodule:: app.model.files
    :members:
 

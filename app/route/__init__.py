@@ -2,6 +2,6 @@ from flask import Blueprint
 
 main = Blueprint('main', __name__)
 
-# 在最后导入，避免循环依赖
+# import in the last, avoiding dep loop
 from . import files, errors
 

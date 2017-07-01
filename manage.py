@@ -1,32 +1,32 @@
 #!/usr/bin/env python
 """
-manage脚本，用来启动flask服务器，以及一些其它辅助功能
+manage script do many things for us
 
-默认情况下，runserver在本地特定端口 启动dev环境服务器，而后其端口就可以访问了
+we may start dev server many times during development.
 
 .. code-block:: bash
 
    ./manage.py runserver -h 0.0.0.0 -p 5000
 
-在浏览器访问 http://localhost:5000，出现 Hello, Here，说明服务器启动成功
+browse http://localhost:5000 and see if it works
 
-如果要在生产环境下启动服务器，需要声明环境变量
+you need FLASK_ENV to change the current environment like production or other.
 
 .. code-block:: bash
 
    FLASK_ENV=production ./manage.py runserver -h 0.0.0.0 -p 5000
 
-manage.py的其它功能
+detail about manage.py usage
 
 .. code-block:: bash
 
    usage: manage.py [-?] {test,shell,db,runserver} ...
 
    positional arguments:
-       runserver           启动flask服务器
-       shell               启动ipython辅助shell，帮助调试变量，数据库连接之类
-       test                单元测试，不完善
-       db                  针对ORM的修改，进行数据库表的迁移修改
+       runserver           start flask server
+       shell               run ipython shell for debug
+       test                run unit tests
+       db                  db magrition
 
    optional arguments:
      -?, --help            show this help message and exit

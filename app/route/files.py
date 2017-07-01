@@ -1,3 +1,6 @@
+"""
+all api about files manipulation
+"""
 import os
 from flask import render_template
 from flask import redirect, request
@@ -12,12 +15,17 @@ UPLOAD_FOLDER = BaseConfig.UPLOAD_FOLDER
 
 @main.route("/")
 def index():
-    # access full file list
+    """
+    home page index.html
+    """
     return render_template('index.html', files = listFiles())
 
 
 @main.route("/api/uploadFile", methods=['POST'])
 def upload_file():
+    """
+    upload a file to server by post
+    """
     file = request.files['file']
     filename = file.filename
     file.save(os.path.join(UPLOAD_FOLDER, filename))
@@ -26,13 +34,16 @@ def upload_file():
 
 @main.route("/api/delFile/<file_id>", methods=['GET'])
 def del_file(file_id):
+    """
+    remove file in server
+    """
     delFile(file_id)
     return redirect('/')
 
 @main.route("/file/<filename>", methods=['GET'])
 def serve_file(filename):
     """
-    提供静态资源的访问
+    access file content, you can download or something
     """
     folder = UPLOAD_FOLDER
     path = os.path.join(folder, filename)
@@ -42,7 +53,9 @@ def serve_file(filename):
 
 
 def addFile(filename):
-    # check if duplicate file
+    """
+    add a record in db
+    """
     files = listFiles()
     for f in files:
         if filename == f.filename:
@@ -52,10 +65,16 @@ def addFile(filename):
     db.session.commit()
 
 def delFile(id):
+    """
+    remove the record in db
+    """
     fileToDelete = Files.query.filter_by(id=id).one()
     db.session.delete(fileToDelete)
     db.session.commit()
 
 def listFiles():
+    """
+    query all records
+    """
     return Files.query.all()
 
